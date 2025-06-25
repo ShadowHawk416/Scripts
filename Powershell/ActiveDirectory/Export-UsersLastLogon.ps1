@@ -1,0 +1,1 @@
+Get-ADUser -Filter {Enabled -eq $true} -Properties LastLogonTimeStamp | Select-Object Name,@{Name="LastLogon";Expression={[DateTime]::FromFileTime($_.LastLogonTimeStamp).ToString("yyyy-MM-dd hh:mm:ss")}} | Export-Csv "C:\temp\LastLogon.csv" -NoTypeInformation
